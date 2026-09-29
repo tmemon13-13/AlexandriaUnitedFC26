@@ -489,35 +489,46 @@ footer {
   font-weight: 600;
 }
 
-/* ── TICKER (scrolling phrase strip) ─────────────────────── */
-.ticker {
+/* ── TICKER (crossing scrolling bands) ─────────────────── */
+.ticker-stage {
+  position: relative;
   overflow: hidden;
-  background: var(--gold);
-  color: var(--navy);
-  padding: 1rem 0;
-  border-top: 1px solid rgba(0,0,0,0.12);
-  border-bottom: 1px solid rgba(0,0,0,0.12);
+  padding: 2.75rem 0;
+  background: var(--white);
 }
-.ticker.dark { background: var(--navy); color: var(--white); border-color: rgba(255,182,18,0.2); }
+.ticker {
+  position: relative;
+  width: 110%;
+  margin-left: -5%;
+  overflow: hidden;
+  padding: 0.95rem 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+}
+.ticker.gold { background: var(--gold); color: var(--navy); z-index: 2; }
+.ticker.dark { background: var(--navy); color: var(--white); z-index: 1; }
+.ticker.tilt-up   { transform: rotate(-2.5deg); }
+.ticker.tilt-down { transform: rotate(2deg); margin-top: -0.6rem; }
 .ticker-track {
   display: flex;
   width: max-content;
-  animation: tickerScroll 28s linear infinite;
+  animation: tickerScroll 34s linear infinite;
 }
+.ticker.reverse .ticker-track { animation-direction: reverse; animation-duration: 40s; }
 .ticker-group { display: flex; align-items: center; flex-shrink: 0; }
 .ticker-item {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-size: clamp(1.9rem, 4.5vw, 3.2rem);
   letter-spacing: 0.04em;
   line-height: 1;
   white-space: nowrap;
-  padding: 0 1.1rem;
+  padding: 0 1.25rem;
+  text-transform: uppercase;
 }
-.ticker-item.outline { color: transparent; -webkit-text-stroke: 1.2px var(--navy); }
-.ticker.dark .ticker-item.outline { -webkit-text-stroke-color: var(--gold); }
-.ticker-star { font-size: 1rem; opacity: 0.7; }
-.ticker.dark .ticker-star { color: var(--gold); opacity: 1; }
-@keyframes tickerScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.ticker.gold .ticker-item.outline { color: transparent; -webkit-text-stroke: 1.3px var(--navy); }
+.ticker.dark .ticker-item.outline { color: transparent; -webkit-text-stroke: 1.3px var(--gold); }
+.ticker-star { font-size: 1.1rem; }
+.ticker.dark .ticker-star { color: var(--gold); }
+@keyframes tickerScroll { from { transform: translateX(0); } to { transform: translateX(-25%); } }
 
 /* ── LINE LIST (numbered rows, no cards) ───────────────── */
 .line-list { border-top: 1px solid var(--gray-light); }

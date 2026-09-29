@@ -132,9 +132,11 @@
   .contact-form-card { margin-top: 0.75rem; }
 
   /* ── Ticker + numbered lists ───────────────────────────── */
-  .ticker { padding: 0.8rem 0; }
-  .ticker-item { font-size: 1.9rem; padding: 0 0.8rem; }
-  .ticker-track { animation-duration: 22s; }
+  .ticker-stage { padding: 2rem 0; }
+  .ticker { padding: 0.75rem 0; }
+  .ticker-item { font-size: 1.85rem; padding: 0 0.85rem; }
+  .ticker-track { animation-duration: 26s; }
+  .ticker.reverse .ticker-track { animation-duration: 30s; }
   .line-row { grid-template-columns: 44px 1fr; gap: 0 0.9rem; padding: 1.35rem 0; }
   .line-num { font-size: 1.8rem; }
   .line-row h3 { font-size: 1.6rem; margin-bottom: 0.35rem; }
