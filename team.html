@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team | Alexandria United FC</title>
+  <meta name="description" content="Meet the Alexandria United FC roster, the full 2026 Fall UPSL squad, goalkeepers through forwards.">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ── Season stats strip ── */
+    .season-strip { background: var(--navy); padding: 2.5rem 0; }
+    .season-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      text-align: center;
+    }
+    .season-stat .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      color: var(--gold);
+      line-height: 1;
+    }
+    .season-stat .stat-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-top: 0.35rem;
+    }
+    .season-note { text-align:center; margin-top:1.5rem; font-size:0.8rem; color: rgba(255,255,255,0.4); }
+
+    /* ── Filter bar ── */
+    .filter-bar { background: var(--off-white); padding: 1.5rem 0; border-bottom: 1px solid var(--gray-light); }
+    .filter-inner { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+    .filter-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--gray-mid); margin-right: 0.5rem;
+    }
+    .filter-btn {
+      padding: 0.45rem 1.1rem; border-radius: 100px; border: 1.5px solid var(--gray-light);
+      font-size: 0.8rem; font-weight: 600; color: var(--gray-dark); background: var(--white);
+      transition: all var(--transition); cursor: pointer;
+    }
+    .filter-btn:hover, .filter-btn.active { border-color: var(--navy); background: var(--navy); color: var(--white); }
+
+    /* ── Roster grid ── */
+    .roster-section { background: var(--off-white); padding: 3.5rem 0 5rem; }
+    .roster-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.25rem;
+    }
+    .player-card[hidden] { display: none; }
+    .player-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: all var(--transition);
+    }
+    .player-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+    .player-photo {
+      aspect-ratio: 3/4;
+      background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy-mid) 100%);
+      overflow: hidden;
+    }
+    .player-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+    .player-photo.img-fail img { display: none; }
+    .player-photo.img-fail { display: flex; align-items: center; justify-content: center; }
+    .player-photo.img-fail::after {
+      content: '⚽'; font-size: 2rem; opacity: 0.3;
+    }
+    .player-info { padding: 0.9rem 1rem 1.1rem; }
+    .player-position {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-dark);
+    }
+    .player-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.25rem; letter-spacing: 0.03em; color: var(--navy); line-height: 1.15; margin: 0.2rem 0 0.35rem;
+    }
+    .player-apps { font-size: 0.78rem; color: var(--gray-mid); }
+    .player-apps-new { color: var(--gold-dark); font-weight: 600; }
+
+    /* ── Top scorers ── */
+    .scorers-section { background: var(--white); }
+    .scorers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+    .scorer-card { text-align: center; }
+    .scorer-photo {
+      width: 84px; height: 84px; border-radius: 50%; overflow: hidden; margin: 0 auto 0.6rem;
+      border: 2px solid var(--gold); background: var(--navy-light);
+    }
+    .scorer-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+    .scorer-goals { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--gold-dark); line-height: 1; }
+    .scorer-name { font-size: 0.85rem; font-weight: 600; color: var(--navy); margin-top: 0.2rem; }
+    .scorer-pos { font-size: 0.7rem; color: var(--gray-mid); text-transform: uppercase; letter-spacing: 0.06em; }
+
+    @media (max-width: 900px) {
+      .season-inner { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    }
+    @media (max-width: 640px) {
+      .roster-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ══════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-progress"><span class="nav-progress-bar"></span></div>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-mark"><img src="assets/aufc-crest.png" alt="Alexandria United FC crest"></div>
+      <div class="logo-text">
+        <strong>Alexandria United</strong>
+        <small>Football Club</small>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="team.html" class="active">Team</a>
+      <a href="staff.html">Staff</a>
+      <a href="sponsors.html">Sponsors</a>
+      <a href="merch.html">Merch</a>
+      <a href="sponsors.html" class="nav-cta">Become a Sponsor</a>
+    </div>
+    <button class="nav-hamburger" onclick="this.classList.toggle('open');document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="team.html">Team</a>
+  <a href="staff.html">Staff</a>
+  <a href="sponsors.html">Sponsors</a>
+  <a href="merch.html">Merch</a>
+  <a href="sponsors.html">Become a Sponsor</a>
+</div>
+
+<!-- ══ PAGE HERO ══════════════════════════════════════════ -->
+<div class="page-hero">
+  <div class="container">
+    <span class="section-label">2026 Fall Season · UPSL DMV South</span>
+    <h1>The Squad</h1>
+    <p>The full Alexandria United FC roster competing in the UPSL Premier this season.</p>
+    <div class="gold-line"></div>
+  </div>
+</div>
+
+<!-- ══ SEASON STATS ═══════════════════════════════════════ -->
+<div class="season-strip">
+  <div class="container">
+    <div class="season-inner">
+      <div class="season-stat"><div class="stat-num">5</div><div class="stat-label">Wins</div></div>
+      <div class="season-stat"><div class="stat-num" style="color:var(--red-light);">0</div><div class="stat-label">Losses</div></div>
+      <div class="season-stat"><div class="stat-num">2</div><div class="stat-label">Draws</div></div>
+      <div class="season-stat"><div class="stat-num">24</div><div class="stat-label">Goals Scored</div></div>
+    </div>
+    <p class="season-note">2026 Fall record, UPSL Premier, DMV South Conference</p>
+  </div>
+</div>
+
+<!-- ══ FILTER BAR ═════════════════════════════════════════ -->
+<div class="filter-bar">
+  <div class="container">
+    <div class="filter-inner" id="filterTabs">
+      <span class="filter-label">Filter:</span>
+      <button class="filter-btn active" data-filter="all">All (65)</button>
+      <button class="filter-btn" data-filter="gk">Goalkeepers (4)</button>
+      <button class="filter-btn" data-filter="def">Defenders (21)</button>
+      <button class="filter-btn" data-filter="mid">Midfielders (17)</button>
+      <button class="filter-btn" data-filter="fwd">Forwards (23)</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ROSTER ═════════════════════════════════════════════ -->
+<section class="roster-section">
+  <div class="container">
+    <div class="roster-grid" id="rosterGrid">
+      <div class="player-card" data-group="gk">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2026/03/rOKyelGx7iACfOaVQLb6Coy78kaft0.jpg" alt="Abdulaziz Sanuri, Goalkeeper" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Goalkeeper</div>
+          <div class="player-name">Abdulaziz Sanuri</div>
+          <div class="player-apps">13 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="gk">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2026/04/jyiUjLgGJCBWjY8y6TmS9T3zQFR7wD.jpg" alt="Mohammed Almodhahkah, Goalkeeper" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Goalkeeper</div>
+          <div class="player-name">Mohammed Almodhahkah</div>
+          <div class="player-apps">11 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="gk">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2025/04/TnZm9ENZmHRnyegn46wBm9K89o0WHF.jpg" alt="Christian Merida Camacho, Goalkeeper" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Goalkeeper</div>
+          <div class="player-name">Christian Merida Camacho</div>
+          <div class="player-apps">11 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="gk">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2024/08/rS7v4Kw490n89uDFjYO7T9DiNwlbk9.jpg" alt="Jose Diaz, Goalkeeper" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Goalkeeper</div>
+          <div class="player-name">Jose Diaz</div>
+          <div class="player-apps">1 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="def">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2026/04/1ayopW9qYEh0ENjQaz2Jdxi265QuPP.jpg" alt="Tewedaj A. Ayele, Defense" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Defense</div>
+          <div class="player-name">Tewedaj A. Ayele</div>
+          <div class="player-apps">15 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="def">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2023/08/FrrLR0FscBKUli8HKW9AS6gVAaYmiO.jpg" alt="Max A. Medrano, Defense" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Defense</div>
+          <div class="player-name">Max A. Medrano</div>
+          <div class="player-apps">14 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="def">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2022/09/PgRxdWUjAjwtoE0t9u102foV9178Dk.jpg" alt="Tash Andkhoie, Defense" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Defense</div>
+          <div class="player-name">Tash Andkhoie</div>
+          <div class="player-apps">13 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="def">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2026/08/SLdTyYADDi3IrQqZxczEF5fuO0FNdk.jpg" alt="Joshua Berasko, Defense" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Defense</div>
+          <div class="player-name">Joshua Berasko</div>
+          <div class="player-apps">10 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="def">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2023/08/oRdzSjfMsqq1stqWENwMblLU3R0jRK.jpg" alt="Phillip Brown, Defense" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Defense</div>
+          <div class="player-name">Phillip Brown</div>
+          <div class="player-apps">10 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="def">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2023/04/N7vJXlTnuhq8FYDvl6BSXvkg5D08YX.jpg" alt="Samir Ibrahim, Defense" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Defense</div>
+          <div class="player-name">Samir Ibrahim</div>
+          <div class="player-apps">10 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="def">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2026/09/0QraT5gZf58kc8F3Y0AilTA2vJOgsu.jpg" alt="Michael Damoah, Defense" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Defense</div>
+          <div class="player-name">Michael Damoah</div>
+          <div class="player-apps">7 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="def">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2026/09/PuFh6dwMexEyOlPm62SU3p1cVxMfZy.jpg" alt="Bruno F. Borges, Defense" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Defense</div>
+          <div class="player-name">Bruno F. Borges</div>
+          <div class="player-apps">5 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="def">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2024/04/xal9QvKx2cOcXnVrNxVizzWLMlMPtY.jpg" alt="Vandyke Gyau, Defense" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Defense</div>
+          <div class="player-name">Vandyke Gyau</div>
+          <div class="player-apps">5 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="def">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2026/05/JJmYnNh3MnVANyI5Lchgrls4l8eWAl.jpg" alt="Adrian Carrasco, Defense" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Defense</div>
+          <div class="player-name">Adrian Carrasco</div>
+          <div class="player-apps">4 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="def">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2022/11/Yluk8TIk3MCXpPDLwoys0XpYGkUEgI.jpg" alt="John P. Bannon, Defense" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Defense</div>
+          <div class="player-name">John P. Bannon</div>
+          <div class="player-apps">4 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="def">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2026/08/mlYrIB8fnjOiM4aGc6X0zSObfGDfR6.jpg" alt="Giorgi Lashkhi, Defense" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Defense</div>
+          <div class="player-name">Giorgi Lashkhi</div>
+          <div class="player-apps">3 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="def">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2023/05/oFLBtDnlPe9edfBKfvAM9Mm76HB6eD.jpg" alt="Trevon Phillips, Defense" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Defense</div>
+          <div class="player-name">Trevon Phillips</div>
+          <div class="player-apps">3 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="def">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2026/03/eXgOmm8iZcceWvEwahI2lIRdkiOQQC.jpg" alt="Jorge A. Franco, Defense" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Defense</div>
+          <div class="player-name">Jorge A. Franco</div>
+          <div class="player-apps">2 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="def">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2025/05/5j4cRi1xi0FARCyVWjpZbYec05jL6q-1.jpg" alt="Alvaro A. Valdovinos, Defense" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Defense</div>
+          <div class="player-name">Alvaro A. Valdovinos</div>
+          <div class="player-apps">2 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="def">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2024/05/B6UDy1Bxs6jvFzNH5AVWTWrLE1p1z3.jpg" alt="Arnold Maradiaga, Defense" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Defense</div>
+          <div class="player-name">Arnold Maradiaga</div>
+          <div class="player-apps">2 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="def">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2026/03/oDTyIGurJxNCBQhupjiytWnwEXPVuc.jpg" alt="Matthew Bergmaier, Defense" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Defense</div>
+          <div class="player-name">Matthew Bergmaier</div>
+          <div class="player-apps player-apps-new">New Signing</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="def">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2026/02/p5p5sL6bo2ICGeg6pTLmMYOgUERD2x.jpg" alt="Daniel A. Carreon Delgado, Defense" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Defense</div>
+          <div class="player-name">Daniel A. Carreon Delgado</div>
+          <div class="player-apps player-apps-new">New Signing</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="def">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2025/09/9rth2i8yoagMnpIWU4v8MpHl3COe3F.jpg" alt="Adis Tafa, Defense" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Defense</div>
+          <div class="player-name">Adis Tafa</div>
+          <div class="player-apps player-apps-new">New Signing</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="def">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2025/03/tM3tFEuGJv9WBPkNJ8l7DkeY5RUivx.jpg" alt="Teimurazi Kutateladze, Defense" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Defense</div>
+          <div class="player-name">Teimurazi Kutateladze</div>
+          <div class="player-apps player-apps-new">New Signing</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="def">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2023/08/Xw8jUv50FC1uHAORqL8YZUNRC6D5QC-2.jpg" alt="Marvin O. Garcia, Defense" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Defense</div>
+          <div class="player-name">Marvin O. Garcia</div>
+          <div class="player-apps player-apps-new">New Signing</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="mid">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2023/04/ySrFTJvjMP6Loy82TU0guLfOzsFi0h-1.jpg" alt="Daniel Obour, Midfield" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Midfield</div>
+          <div class="player-name">Daniel Obour</div>
+          <div class="player-apps">16 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="mid">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2022/05/WiyIUVwSV6GTeF0XKb0Apb0c27q70C.jpg" alt="Stephen A. Appiah, Midfield" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Midfield</div>
+          <div class="player-name">Stephen A. Appiah</div>
+          <div class="player-apps">14 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="mid">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2026/08/rRj47hRQBhBtS3K8jXuEO983jujTuu.jpg" alt="Simon Brun, Midfield" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Midfield</div>
+          <div class="player-name">Simon Brun</div>
+          <div class="player-apps">11 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="mid">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2023/08/jDmv3DK1n5RUSjieNXJS6aUBfkLJZD.jpg" alt="Jorge S. Cruz, Midfield" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Midfield</div>
+          <div class="player-name">Jorge S. Cruz</div>
+          <div class="player-apps">8 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="mid">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2026/08/o0ig7oN7Wv1SlO15yf64m2DpKgegq0.jpg" alt="Joseph C. Hainin, Midfield" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Midfield</div>
+          <div class="player-name">Joseph C. Hainin</div>
+          <div class="player-apps">7 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="mid">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2023/08/e6vsMFAqJIcQgVGzassaOpIMysCUmd.jpg" alt="Mahmoud B. Kelfala, Midfield" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Midfield</div>
+          <div class="player-name">Mahmoud B. Kelfala</div>
+          <div class="player-apps">7 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="mid">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2023/10/5hcyhj8r9LBiOy63czkM7xnMUJreyy.jpg" alt="Everson R. Amaya, Midfield" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Midfield</div>
+          <div class="player-name">Everson R. Amaya</div>
+          <div class="player-apps">6 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="mid">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2026/04/IwHEbkwlE8QxSdyDdFtZNfgRfa8wls.jpg" alt="Mohamed Koroma, Midfield" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Midfield</div>
+          <div class="player-name">Mohamed Koroma</div>
+          <div class="player-apps">5 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="mid">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2025/05/0dVIG7ESgGlyqqySMwGpayACQu1MoK.jpg" alt="Alex Raudales, Midfield" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Midfield</div>
+          <div class="player-name">Alex Raudales</div>
+          <div class="player-apps">5 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="mid">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2023/05/gBKv4VCOkvaOibVC9ko3FCuk4xAErK.jpg" alt="Kenny M. Robles, Midfield" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Midfield</div>
+          <div class="player-name">Kenny M. Robles</div>
+          <div class="player-apps">5 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="mid">
+        <div class="player-photo">
+          <img src="https://res.cloudinary.com/hn2szl8kc/image/upload/q_auto/profile-photos/wTWslPISYdV6cFPSeQpmXEvQONQXio.jpg" alt="Jorge Lopez Escobar, Midfield" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Midfield</div>
+          <div class="player-name">Jorge Lopez Escobar</div>
+          <div class="player-apps">3 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="mid">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2024/08/otHpBCpoU6ZBMdi0Po6QNwiyYmafr1-1.jpg" alt="Yorjan A. Rojas, Midfield" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Midfield</div>
+          <div class="player-name">Yorjan A. Rojas</div>
+          <div class="player-apps">3 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="mid">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2025/05/z9eTC4tL0JFxPPbUe5CAaPOLKurupr.jpg" alt="Sebastian Aparicio, Midfield" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Midfield</div>
+          <div class="player-name">Sebastian Aparicio</div>
+          <div class="player-apps">2 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="mid">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2024/08/jorBtj5qdGpuc1KtaDUMGYbaZO1jVG.jpg" alt="Sebastian Caceres, Midfield" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Midfield</div>
+          <div class="player-name">Sebastian Caceres</div>
+          <div class="player-apps">2 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="mid">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2026/04/tibFzvEtceXEjPKrsfmhY8bhw5fTQj.jpg" alt="Jeffrey Gutierrez Cueva, Midfield" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Midfield</div>
+          <div class="player-name">Jeffrey Gutierrez Cueva</div>
+          <div class="player-apps player-apps-new">New Signing</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="mid">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2023/03/fJQR9Sjdpk202J0JoxnFTO31cXtsUI.jpg" alt="Matthew E. Martinez-Zelaya, Midfield" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Midfield</div>
+          <div class="player-name">Matthew E. Martinez-Zelaya</div>
+          <div class="player-apps player-apps-new">New Signing</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="mid">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2022/06/fReZHmEog0Q17CdW5h3PyYptqEfdjX.jpg" alt="Yvan Moundou, Midfield" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Midfield</div>
+          <div class="player-name">Yvan Moundou</div>
+          <div class="player-apps player-apps-new">New Signing</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="fwd">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2023/08/I4Wx5k49E9BmzPTTY48qoIbwKgTkjI.jpg" alt="Dannish Decardi-Nelson, Forward" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Forward</div>
+          <div class="player-name">Dannish Decardi-Nelson</div>
+          <div class="player-apps">21 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="fwd">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2024/05/068rbwbFdtFq5BOTqwuwL3SSLjtnY7.jpg" alt="Jared DuBose, Forward" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Forward</div>
+          <div class="player-name">Jared DuBose</div>
+          <div class="player-apps">14 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="fwd">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2023/08/fkJWf5qHy78RuqudNLOqtF6CMNKCTi.jpg" alt="Teshawn M. Johnson, Forward" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Forward</div>
+          <div class="player-name">Teshawn M. Johnson</div>
+          <div class="player-apps">12 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="fwd">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2026/04/GViv5cwiYgLLuC4AlBvqLw8OALiGmL.jpg" alt="Samuel O. Omeeboh, Forward" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Forward</div>
+          <div class="player-name">Samuel O. Omeeboh</div>
+          <div class="player-apps">10 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="fwd">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2025/08/DkgbR2QlH2SaGcyYy7Ba3rO12DClGc.jpg" alt="Mohamed E. Elarag, Forward" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Forward</div>
+          <div class="player-name">Mohamed E. Elarag</div>
+          <div class="player-apps">10 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="fwd">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2025/09/vSk4sjq9AwLyCEy1zwey3Q9HhpZnFn.jpg" alt="Lucian Chistoni, Forward" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Forward</div>
+          <div class="player-name">Lucian Chistoni</div>
+          <div class="player-apps">8 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="fwd">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2025/09/CYfq5zcKOiQxv1cH1NBS7FI3eiJspX.jpg" alt="Angel I. Espinal Rios, Forward" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Forward</div>
+          <div class="player-name">Angel I. Espinal Rios</div>
+          <div class="player-apps">8 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="fwd">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2026/08/BtOhVxtlkHWSIx9Uel6VL9PlhJ9g7l.jpg" alt="Jefferson A. Martinez, Forward" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Forward</div>
+          <div class="player-name">Jefferson A. Martinez</div>
+          <div class="player-apps">7 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="fwd">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2025/04/LF1GI76nKb6WwIYziS1n8x4RNKiLR7.jpg" alt="Nana Adu Amankwa, Forward" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Forward</div>
+          <div class="player-name">Nana Adu Amankwa</div>
+          <div class="player-apps">7 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="fwd">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2026/04/a3LN5W5srhAs75bqHm33JaZS4htdJa.jpg" alt="Mathews J. Tejeda, Forward" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Forward</div>
+          <div class="player-name">Mathews J. Tejeda</div>
+          <div class="player-apps">6 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="fwd">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2025/08/rDz0lS6wJlZMpqD9NNi4WFJq4FwPT6.jpg" alt="Mikias B. Mekonen, Forward" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Forward</div>
+          <div class="player-name">Mikias B. Mekonen</div>
+          <div class="player-apps">6 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="fwd">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2024/08/5FZUOyYA58YwvZtILf8GRWD957kxEw.jpg" alt="Marco G. Sequeira, Forward" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Forward</div>
+          <div class="player-name">Marco G. Sequeira</div>
+          <div class="player-apps">6 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="fwd">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2024/05/4MC7L1agaG8U29gzoZ4d7GFSMV7PKX.jpg" alt="Liam R. Lovell, Forward" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Forward</div>
+          <div class="player-name">Liam R. Lovell</div>
+          <div class="player-apps">6 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="fwd">
+        <div class="player-photo">
+          <img src="https://premier.upsl.com/wp-content/uploads/sites/5/2025/04/AbEqVg7cSKybCLt4ZHgQFUy1WwjI4A.jpg" alt="Yusuf E. Peker, Forward" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Forward</div>
+          <div class="player-name">Yusuf E. Peker</div>
+          <div class="player-apps">5 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="fwd">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2023/01/Ogha1hkcERCTQBpeqzTseQDaswt1yp.jpg" alt="Adam Nabet, Forward" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Forward</div>
+          <div class="player-name">Adam Nabet</div>
+          <div class="player-apps">5 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="fwd">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2022/07/6ZnyBXWMn53tGXAYGCTBHq2N7EQosL-1.jpg" alt="Christopher D. Mendoza, Forward" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Forward</div>
+          <div class="player-name">Christopher D. Mendoza</div>
+          <div class="player-apps">4 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="fwd">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2026/08/Y7VeQ6NDpxzTz9wnvfJ4Ysma07q1sr.jpg" alt="Nyliek Brooks-Allen, Forward" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Forward</div>
+          <div class="player-name">Nyliek Brooks-Allen</div>
+          <div class="player-apps">3 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="fwd">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2026/08/C8qKgKJLjvcumHv0P3lbE1oNdIS6yS.jpg" alt="Damin Williams, Forward" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Forward</div>
+          <div class="player-name">Damin Williams</div>
+          <div class="player-apps">2 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="fwd">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2023/08/Q7mfcxkb85OXAg8IOP0QGv0d4ZkXqb.jpg" alt="Jhefry L. Torres, Forward" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Forward</div>
+          <div class="player-name">Jhefry L. Torres</div>
+          <div class="player-apps">2 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="fwd">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2026/08/uplp8cpXr9TPzX8J9A1qavaV9d3Hq2.jpg" alt="Salam S. Ashurmamadov, Forward" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Forward</div>
+          <div class="player-name">Salam S. Ashurmamadov</div>
+          <div class="player-apps">1 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="fwd">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2026/03/VBEz3CbYYrSsrKBzV8zCldaDvDwUOY.jpg" alt="Eyad Elfettesy, Forward" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Forward</div>
+          <div class="player-name">Eyad Elfettesy</div>
+          <div class="player-apps">1 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="fwd">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2026/01/p7kw2wAaeiqWMMcJFAQTGXSWFhqb0z.jpg" alt="Rodrigo Y. Garcia, Forward" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Forward</div>
+          <div class="player-name">Rodrigo Y. Garcia</div>
+          <div class="player-apps">1 Appearances</div>
+        </div>
+      </div>
+
+      <div class="player-card" data-group="fwd">
+        <div class="player-photo">
+          <img src="https://upsl.com/wp-content/uploads/sites/5/2026/04/NQpZZuCxBvtXv35dPAFfPGh10LGoGR.jpg" alt="David Suarez, Forward" loading="lazy" onerror="this.closest('.player-photo').classList.add('img-fail')">
+        </div>
+        <div class="player-info">
+          <div class="player-position">Forward</div>
+          <div class="player-name">David Suarez</div>
+          <div class="player-apps player-apps-new">New Signing</div>
+        </div>
+      </div>    </div>
+    <p style="margin-top:2.5rem; text-align:center; color:var(--gray-mid); font-size:0.85rem;">
+      Roster, positions and appearance data sourced from the UPSL Premier league site. Some players joined later in the season and don't yet have a recorded appearance count.
+    </p>
+  </div>
+</section>
+
+<!-- ══ TOP SCORERS ════════════════════════════════════════ -->
+<section class="scorers-section section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">2026 Fall Season</span>
+      <h2>Top Scorers</h2>
+      <p>Leading the line for AUFC this season.</p>
+    </div>
+    <div class="scorers-grid">
+      <div class="scorer-card">
+        <div class="scorer-photo"><img src="https://res.cloudinary.com/hn2szl8kc/image/upload/q_auto/profile-photos/vSk4sjq9AwLyCEy1zwey3Q9HhpZnFn.jpg" alt="Lucian Chistoni"></div>
+        <div class="scorer-goals">5</div>
+        <div class="scorer-name">Lucian Chistoni</div>
+        <div class="scorer-pos">Forward</div>
+      </div>
+      <div class="scorer-card">
+        <div class="scorer-photo"><img src="https://res.cloudinary.com/hn2szl8kc/image/upload/q_auto/profile-photos/068rbwbFdtFq5BOTqwuwL3SSLjtnY7.jpg" alt="Jared DuBose"></div>
+        <div class="scorer-goals">3</div>
+        <div class="scorer-name">Jared DuBose</div>
+        <div class="scorer-pos">Forward</div>
+      </div>
+      <div class="scorer-card">
+        <div class="scorer-photo"><img src="https://res.cloudinary.com/hn2szl8kc/image/upload/q_auto/profile-photos/PuFh6dwMexEyOlPm62SU3p1cVxMfZy.jpg" alt="Bruno F. Borges"></div>
+        <div class="scorer-goals">2</div>
+        <div class="scorer-name">Bruno F. Borges</div>
+        <div class="scorer-pos">Defense</div>
+      </div>
+      <div class="scorer-card">
+        <div class="scorer-photo"><img src="https://res.cloudinary.com/hn2szl8kc/image/upload/q_auto/profile-photos/Y7VeQ6NDpxzTz9wnvfJ4Ysma07q1sr.jpg" alt="Nyliek Brooks-Allen"></div>
+        <div class="scorer-goals">2</div>
+        <div class="scorer-name">Nyliek Brooks-Allen</div>
+        <div class="scorer-pos">Forward</div>
+      </div>
+      <div class="scorer-card">
+        <div class="scorer-photo"><img src="https://res.cloudinary.com/hn2szl8kc/image/upload/q_auto/profile-photos/CYfq5zcKOiQxv1cH1NBS7FI3eiJspX.jpg" alt="Angel I. Espinal Rios"></div>
+        <div class="scorer-goals">2</div>
+        <div class="scorer-name">Angel I. Espinal Rios</div>
+        <div class="scorer-pos">Forward</div>
+      </div>
+      <div class="scorer-card">
+        <div class="scorer-photo"><img src="https://res.cloudinary.com/hn2szl8kc/image/upload/q_auto/profile-photos/4MC7L1agaG8U29gzoZ4d7GFSMV7PKX.jpg" alt="Liam R. Lovell"></div>
+        <div class="scorer-goals">2</div>
+        <div class="scorer-name">Liam R. Lovell</div>
+        <div class="scorer-pos">Forward</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ════════════════════════════════════════════════ -->
+<section class="section-dark" style="background:var(--navy); padding:4rem 0; text-align:center;">
+  <div class="container">
+    <span class="section-label">Meet the Rest of the Club</span>
+    <h2 style="color:#fff; margin-bottom:1rem;">Coaches, Admins &amp; Front Office</h2>
+    <p style="color:rgba(255,255,255,0.6); max-width:480px; margin:0 auto 2rem;">The staff behind the squad: coaching, operations, and communications.</p>
+    <a href="staff.html" class="btn btn-primary">Meet the Staff</a>
+  </div>
+</section>
+
+<!-- ══ NEWSLETTER ═════════════════════════════════════════ -->
+<div class="newsletter-strip">
+  <div class="container">
+    <div class="newsletter-inner">
+      <div>
+        <h3>Stay in the Loop</h3>
+        <p>Match results, news, and club updates: straight to your inbox.</p>
+      </div>
+      <form class="newsletter-form" onsubmit="return false;">
+        <input type="email" placeholder="Your email address">
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ═════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo-mark"><img src="assets/aufc-crest.png" alt="Alexandria United FC crest"></div>
+        <p>Alexandria United FC, representing the DMV with pride, passion, and a relentless love for the beautiful game.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/alexandriaunited.fc/" target="_blank" title="Instagram">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="#" title="Twitter/X">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" title="YouTube">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="staff.html">Meet the Staff</a></li>
+          <li><a href="sponsors.html">Sponsors</a></li>
+          <li><a href="merch.html">Merch</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Get Involved</h5>
+        <ul>
+          <li><a href="get-involved.html">Play / Volunteer / Sponsor</a></li>
+          <li><a href="sponsors.html">Become a Sponsor</a></li>
+          <li><a href="merch.html">Shop Merch</a></li>
+          <li><a href="mailto:taylor.memon@gmail.com">Media Inquiries</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <div class="contact-item">
+          <span class="ci-icon">✉</span>
+          <span>info@alexandriaunited.fc</span>
+        </div>
+        <div class="contact-item">
+          <span class="ci-icon">📍</span>
+          <span>Alexandria, Virginia<br>Northern Virginia</span>
+        </div>
+        <div class="contact-item">
+          <span class="ci-icon">📸</span>
+          <span><a href="https://www.instagram.com/alexandriaunited.fc/" target="_blank" style="color:var(--gold)">@alexandriaunited.fc</a></span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Alexandria United FC. All rights reserved.</span>
+      <span>Made with passion in Alexandria, VA</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('filterTabs').addEventListener('click', function (e) {
+    var btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    document.querySelectorAll('.filter-btn').forEach(function (b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    var filter = btn.getAttribute('data-filter');
+    document.querySelectorAll('#rosterGrid .player-card').forEach(function (card) {
+      card.hidden = !(filter === 'all' || card.getAttribute('data-group') === filter);
+    });
+  });
+</script>
+
+<script src="js/nav-scroll.js"></script>
+</body>
+</html>

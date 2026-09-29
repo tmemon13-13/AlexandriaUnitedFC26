@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Alexandria United FC</title>
+  <meta name="description" content="The mission and values behind Alexandria United FC, a community soccer club competing in the UPSL Premier, DMV South Conference.">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ── About page sections ── */
+    .about-hero-block { background: var(--off-white); padding: 5rem 0; }
+    .about-hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 3rem; align-items: center; }
+    .about-hero-grid img { border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); width: 100%; height: 420px; object-fit: cover; }
+    .about-hero-copy p { margin-top: 1.25rem; }
+    .about-hero-copy p:first-of-type { font-size: 1.1rem; color: var(--navy); }
+
+    .mission-section { background: var(--navy); text-align: center; padding: 5rem 0; }
+    .mission-section .section-label { color: var(--gold); }
+    .mission-section h2 { color: #fff; max-width: 720px; margin: 0 auto; }
+    .mission-section p { color: rgba(255,255,255,0.6); max-width: 640px; margin: 1.25rem auto 0; }
+
+    .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .value-card { background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow); padding: 2.25rem 1.75rem; text-align: center; transition: all var(--transition); }
+    .value-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+    .value-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .value-card h3 { color: var(--navy); font-size: 1.4rem; margin-bottom: 0.5rem; }
+    .value-card p { font-size: 0.92rem; }
+
+    .comp-section { background: var(--off-white); padding: 5rem 0; }
+    .comp-inner { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; text-align: center; }
+    .comp-card { background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow); padding: 2rem 1.5rem; }
+    .comp-card .comp-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 0.5rem; }
+    .comp-card .comp-value { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--navy); letter-spacing: 0.02em; }
+
+    @media (max-width: 900px) {
+      .about-hero-grid { grid-template-columns: 1fr; }
+      .about-hero-grid img { height: 320px; }
+      .values-grid, .comp-inner { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ══════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-progress"><span class="nav-progress-bar"></span></div>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-mark"><img src="assets/aufc-crest.png" alt="Alexandria United FC crest"></div>
+      <div class="logo-text">
+        <strong>Alexandria United</strong>
+        <small>Football Club</small>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active">About</a>
+      <a href="team.html">Team</a>
+      <a href="staff.html">Staff</a>
+      <a href="sponsors.html">Sponsors</a>
+      <a href="merch.html">Merch</a>
+      <a href="sponsors.html" class="nav-cta">Become a Sponsor</a>
+    </div>
+    <button class="nav-hamburger" onclick="this.classList.toggle('open');document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="team.html">Team</a>
+  <a href="staff.html">Staff</a>
+  <a href="sponsors.html">Sponsors</a>
+  <a href="merch.html">Merch</a>
+  <a href="sponsors.html">Become a Sponsor</a>
+</div>
+
+<!-- ══ PAGE HERO ══════════════════════════════════════════ -->
+<div class="page-hero">
+  <div class="container">
+    <span class="section-label">About the Club</span>
+    <h1>Our Story</h1>
+    <p>A community soccer club representing Alexandria and the greater DMV, built on pride, passion, and a relentless love for the beautiful game.</p>
+    <div class="gold-line"></div>
+  </div>
+</div>
+
+<!-- ══ ABOUT HERO ═════════════════════════════════════════ -->
+<section class="about-hero-block">
+  <div class="container">
+    <div class="about-hero-grid">
+      <div class="about-hero-copy">
+        <span class="section-label">Who We Are</span>
+        <h2 style="color:var(--navy); margin-bottom:0.5rem;">Rooted in Alexandria</h2>
+        <p>Alexandria United FC is a community-driven soccer club competing in the UPSL Premier, representing Alexandria, Virginia and the broader Northern Virginia region on the pitch.</p>
+        <p>We're more than a scoreline. The club exists to give local players a competitive, professional-caliber platform to grow, and to give the Alexandria community a team worth rallying behind, match after match, season after season.</p>
+        <p>From the coaching staff to the front office, everyone involved shares the same goal: build something the city can be proud of, on and off the field.</p>
+      </div>
+      <img src="images/_R2A9013.jpg" alt="Alexandria United FC players on the pitch">
+    </div>
+  </div>
+</section>
+
+<!-- ══ MISSION ════════════════════════════════════════════ -->
+<section class="mission-section">
+  <div class="container">
+    <span class="section-label">Our Mission</span>
+    <h2>Football for the whole city, played with pride, built on community.</h2>
+    <p>We're committed to competing at the highest level of the UPSL Premier while creating real opportunity for local players, coaches, and businesses to grow alongside the club.</p>
+  </div>
+</section>
+
+<!-- ══ VALUES ═════════════════════════════════════════════ -->
+<section class="section" style="background:var(--white);">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">What We Stand For</span>
+      <h2>Our Values</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">🤝</div>
+        <h3>Unity</h3>
+        <p>One crest, one city. Every player, coach, and supporter represents the same club: no exceptions.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🔥</div>
+        <h3>Grit</h3>
+        <p>We play for every ball, every minute, every match. Talent opens doors; work ethic keeps them open.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">📍</div>
+        <h3>Community</h3>
+        <p>This club belongs to Alexandria. We show up off the pitch as much as we compete on it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ COMPETITION ════════════════════════════════════════ -->
+<section class="comp-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">On the Pitch</span>
+      <h2>2026 Fall Season</h2>
+      <p>Currently competing in the UPSL Premier, DMV South Conference.</p>
+    </div>
+    <div class="comp-inner">
+      <div class="comp-card">
+        <div class="comp-label">League</div>
+        <div class="comp-value">UPSL Premier</div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-label">Conference</div>
+        <div class="comp-value">DMV South</div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-label">Home Base</div>
+        <div class="comp-value">Alexandria, VA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ════════════════════════════════════════════════ -->
+<section class="section-dark" style="background:var(--navy); padding:4rem 0; text-align:center;">
+  <div class="container">
+    <span class="section-label">Be Part of the Next Chapter</span>
+    <h2 style="color:#fff; margin-bottom:1rem;">Meet the People Behind the Club</h2>
+    <p style="color:rgba(255,255,255,0.6); max-width:480px; margin:0 auto 2rem;">Coaches, operations, and the front office working to build something Alexandria can be proud of.</p>
+    <a href="staff.html" class="btn btn-primary">Meet the Staff</a>
+  </div>
+</section>
+
+<!-- ══ NEWSLETTER ═════════════════════════════════════════ -->
+<div class="newsletter-strip">
+  <div class="container">
+    <div class="newsletter-inner">
+      <div>
+        <h3>Stay in the Loop</h3>
+        <p>Match results, news, and club updates: straight to your inbox.</p>
+      </div>
+      <form class="newsletter-form" onsubmit="return false;">
+        <input type="email" placeholder="Your email address">
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ═════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo-mark"><img src="assets/aufc-crest.png" alt="Alexandria United FC crest"></div>
+        <p>Alexandria United FC, representing the DMV with pride, passion, and a relentless love for the beautiful game.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/alexandriaunited.fc/" target="_blank" title="Instagram">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="#" title="Twitter/X">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" title="YouTube">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="staff.html">Meet the Staff</a></li>
+          <li><a href="sponsors.html">Sponsors</a></li>
+          <li><a href="merch.html">Merch</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Get Involved</h5>
+        <ul>
+          <li><a href="sponsors.html">Become a Sponsor</a></li>
+          <li><a href="merch.html">Shop Merch</a></li>
+          <li><a href="mailto:info@alexandriaunited.fc">Join the Club</a></li>
+          <li><a href="mailto:taylor.memon@gmail.com">Media Inquiries</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <div class="contact-item">
+          <span class="ci-icon">✉</span>
+          <span>info@alexandriaunited.fc</span>
+        </div>
+        <div class="contact-item">
+          <span class="ci-icon">📍</span>
+          <span>Alexandria, Virginia<br>Northern Virginia</span>
+        </div>
+        <div class="contact-item">
+          <span class="ci-icon">📸</span>
+          <span><a href="https://www.instagram.com/alexandriaunited.fc/" target="_blank" style="color:var(--gold)">@alexandriaunited.fc</a></span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Alexandria United FC. All rights reserved.</span>
+      <span>Made with passion in Alexandria, VA</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/nav-scroll.js"></script>
+</body>
+</html>
