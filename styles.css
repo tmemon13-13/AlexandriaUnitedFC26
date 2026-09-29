@@ -216,6 +216,7 @@ nav.is-scrolled .nav-logo .logo-mark { width: 36px; height: 46px; }
 }
 .nav-links a:not(.nav-cta) {
   position: relative;
+  white-space: nowrap;
   padding: 0.5rem 0.9rem;
   font-size: 0.78rem;
   font-weight: 600;
@@ -257,6 +258,7 @@ nav.is-scrolled .nav-logo .logo-mark { width: 36px; height: 46px; }
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  white-space: nowrap;
   background: var(--gold) !important;
   color: var(--navy) !important;
   margin-left: 0.5rem;
@@ -502,6 +504,10 @@ footer {
 .photo-banner p { color: rgba(255,255,255,0.7); max-width: 480px; margin-top: 0.5rem; }
 
 /* ── RESPONSIVE ─────────────────────────────────────────── */
+@media (max-width: 1180px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+}
 @media (max-width: 960px) {
   .footer-top { grid-template-columns: 1fr 1fr; }
 }
