@@ -480,6 +480,71 @@ footer {
   font-weight: 600;
 }
 
+/* ── TICKER (scrolling phrase strip) ─────────────────────── */
+.ticker {
+  overflow: hidden;
+  background: var(--gold);
+  color: var(--navy);
+  padding: 1rem 0;
+  border-top: 1px solid rgba(0,0,0,0.12);
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+}
+.ticker.dark { background: var(--navy); color: var(--white); border-color: rgba(255,182,18,0.2); }
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: tickerScroll 28s linear infinite;
+}
+.ticker-group { display: flex; align-items: center; flex-shrink: 0; }
+.ticker-item {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  white-space: nowrap;
+  padding: 0 1.1rem;
+}
+.ticker-item.outline { color: transparent; -webkit-text-stroke: 1.2px var(--navy); }
+.ticker.dark .ticker-item.outline { -webkit-text-stroke-color: var(--gold); }
+.ticker-star { font-size: 1rem; opacity: 0.7; }
+.ticker.dark .ticker-star { color: var(--gold); opacity: 1; }
+@keyframes tickerScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ── LINE LIST (numbered rows, no cards) ───────────────── */
+.line-list { border-top: 1px solid var(--gray-light); }
+.line-row {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 0 1.5rem;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--gray-light);
+}
+.line-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.4rem;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--gold-dark);
+}
+.line-row h3 { color: var(--navy); font-size: 1.9rem; line-height: 1; margin-bottom: 0.5rem; }
+.line-row p { max-width: 620px; font-size: 0.98rem; }
+.line-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.9rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--navy);
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 0.2rem;
+  transition: gap var(--transition), color var(--transition);
+}
+.line-link::after { content: '\2192'; }
+.line-link:hover { gap: 0.7rem; color: var(--gold-dark); }
+
 /* Separate back-to-back gold sections */
 .sponsor-cta + .newsletter-strip,
 .custom-section + .newsletter-strip { border-top: 1px solid rgba(0,0,0,0.14); }
@@ -532,5 +597,6 @@ footer {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .ticker-track { animation: none; }
   .nav-cta { animation: none; }
 }
