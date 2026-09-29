@@ -10,7 +10,7 @@
     /* ── About page sections ── */
     .about-hero-block { background: var(--off-white); padding: 5rem 0; }
     .about-hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 3rem; align-items: center; }
-    .about-hero-grid img { border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); width: 100%; height: 420px; object-fit: cover; }
+    .about-hero-grid img { border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); width: 100%; height: 420px; object-fit: cover; object-position: center 55%; }
     .about-hero-copy p { margin-top: 1.25rem; }
     .about-hero-copy p:first-of-type { font-size: 1.1rem; color: var(--navy); }
 
@@ -32,7 +32,12 @@
     .comp-card .comp-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 0.5rem; }
     .comp-card .comp-value { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--navy); letter-spacing: 0.02em; }
 
+    .photo-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; padding: 0.75rem; background: var(--navy); }
+    .photo-strip img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: var(--radius); }
+
     @media (max-width: 900px) {
+      .photo-strip { grid-template-columns: 1fr 1fr; }
+      .photo-strip img:last-child { display: none; }
       .about-hero-grid { grid-template-columns: 1fr; }
       .about-hero-grid img { height: 320px; }
       .values-grid, .comp-inner { grid-template-columns: 1fr; }
@@ -97,10 +102,17 @@
         <p>We're more than a scoreline. The club exists to give local players a competitive, professional-caliber platform to grow, and to give the Alexandria community a team worth rallying behind, match after match, season after season.</p>
         <p>From the coaching staff to the front office, everyone involved shares the same goal: build something the city can be proud of, on and off the field.</p>
       </div>
-      <img src="images/_R2A9013.jpg" alt="Alexandria United FC players on the pitch">
+      <img src="images/teammates-night.jpg" alt="An Alexandria United FC player congratulating the number 11 after a goal">
     </div>
   </div>
 </section>
+
+<!-- ══ PHOTO STRIP ══════════════════════════════════════ -->
+<div class="photo-strip">
+  <img src="images/player-celebration.jpg" alt="Number 73 celebrating with arms raised in front of the goal" loading="lazy">
+  <img src="images/team-celebrate.jpg" alt="The squad celebrating together on the touchline" loading="lazy">
+  <img src="images/goal-celebration.jpg" alt="A player celebrating a goal under the floodlights" loading="lazy">
+</div>
 
 <!-- ══ MISSION ════════════════════════════════════════════ -->
 <section class="mission-section">
@@ -222,9 +234,9 @@
       <div class="footer-col">
         <h5>Get Involved</h5>
         <ul>
+          <li><a href="get-involved.html">Play / Volunteer / Sponsor</a></li>
           <li><a href="sponsors.html">Become a Sponsor</a></li>
           <li><a href="merch.html">Shop Merch</a></li>
-          <li><a href="mailto:info@alexandriaunited.fc">Join the Club</a></li>
           <li><a href="mailto:taylor.memon@gmail.com">Media Inquiries</a></li>
         </ul>
       </div>
