@@ -480,6 +480,10 @@ footer {
   font-weight: 600;
 }
 
+/* Separate back-to-back gold sections */
+.sponsor-cta + .newsletter-strip,
+.custom-section + .newsletter-strip { border-top: 1px solid rgba(0,0,0,0.14); }
+
 /* ── PHOTO BANNER ───────────────────────────────────────── */
 .photo-banner {
   position: relative;
