@@ -7,7 +7,7 @@
   <meta name="description" content="The mission and values behind Alexandria United FC, a community soccer club competing in the UPSL Premier, DMV South Conference.">
   <link rel="icon" type="image/png" href="assets/aufc-crest-color.png">
   <link rel="apple-touch-icon" href="assets/aufc-crest-color.png">
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="stylesheet" href="styles.css?v=5">
   <style>
     /* ── About page sections ── */
     .about-hero-block { background: var(--off-white); padding: 5rem 0; }
@@ -22,11 +22,6 @@
     .mission-section p { color: rgba(255,255,255,0.6); max-width: 640px; margin: 1.25rem 0 0; }
 
 
-    .comp-section { background: var(--off-white); padding: 5rem 0; }
-    .comp-inner { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; text-align: center; }
-    .comp-card { background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow); padding: 2rem 1.5rem; }
-    .comp-card .comp-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 0.5rem; }
-    .comp-card .comp-value { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--navy); letter-spacing: 0.02em; }
 
     .photo-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; padding: 0.75rem; background: var(--navy); }
     .photo-strip img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: var(--radius); }
@@ -36,10 +31,9 @@
       .photo-strip img:last-child { display: none; }
       .about-hero-grid { grid-template-columns: 1fr; }
       .about-hero-grid img { height: 320px; }
-      .comp-inner { grid-template-columns: 1fr; }
     }
   </style>
-  <link rel="stylesheet" href="mobile.css?v=4">
+  <link rel="stylesheet" href="mobile.css?v=5">
 </head>
 <body>
 
@@ -174,26 +168,37 @@
   </div>
 </section>
 
-<!-- ══ COMPETITION ════════════════════════════════════════ -->
-<section class="comp-section">
+<!-- ══ SEASON BOARD ═══════════════════════════════════════ -->
+<section class="season-board">
   <div class="container">
     <div class="section-header">
       <span class="section-label">On the Pitch</span>
       <h2>2026 Fall Season</h2>
       <p>Currently competing in the UPSL Premier, DMV South Conference.</p>
     </div>
-    <div class="comp-inner">
-      <div class="comp-card">
-        <div class="comp-label">League</div>
-        <div class="comp-value">UPSL Premier</div>
+
+    <div class="board-record reveal">
+      <div class="record-item"><span class="record-num" data-count="5">5</span><span class="record-label">Wins</span></div>
+      <div class="record-item"><span class="record-num loss" data-count="0">0</span><span class="record-label">Losses</span></div>
+      <div class="record-item"><span class="record-num" data-count="2">2</span><span class="record-label">Draws</span></div>
+      <div class="record-item"><span class="record-num" data-count="24">24</span><span class="record-label">Goals Scored</span></div>
+    </div>
+
+    <div class="board">
+      <div class="board-row reveal">
+        <span class="board-idx">01</span>
+        <span class="board-label">League</span>
+        <span class="board-value">UPSL Premier</span>
       </div>
-      <div class="comp-card">
-        <div class="comp-label">Conference</div>
-        <div class="comp-value">DMV South</div>
+      <div class="board-row reveal">
+        <span class="board-idx">02</span>
+        <span class="board-label">Conference</span>
+        <span class="board-value">DMV South</span>
       </div>
-      <div class="comp-card">
-        <div class="comp-label">Home Base</div>
-        <div class="comp-value">Alexandria, VA</div>
+      <div class="board-row reveal">
+        <span class="board-idx">03</span>
+        <span class="board-label">Home Base</span>
+        <span class="board-value">Alexandria, VA</span>
       </div>
     </div>
   </div>
@@ -281,6 +286,6 @@
   </div>
 </footer>
 
-<script src="js/nav-scroll.js?v=4"></script>
+<script src="js/nav-scroll.js?v=5"></script>
 </body>
 </html>

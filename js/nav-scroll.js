@@ -29,3 +29,34 @@
     });
   }
 })();
+
+/* Scroll-in reveals and count-up numbers */
+(function () {
+  var items = document.querySelectorAll('.reveal');
+  if (!items.length || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.documentElement.classList.add('js');
+
+  function countUp(el) {
+    var end = parseInt(el.getAttribute('data-count'), 10) || 0;
+    var start = null, dur = 1200;
+    el.textContent = '0';
+    function step(t) {
+      if (!start) start = t;
+      var p = Math.min(1, (t - start) / dur);
+      el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('in');
+      e.target.querySelectorAll('[data-count]').forEach(countUp);
+      io.unobserve(e.target);
+    });
+  }, { threshold: 0.25 });
+  items.forEach(function (el) { io.observe(el); });
+})();
