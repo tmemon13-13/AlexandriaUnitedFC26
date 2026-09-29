@@ -9,12 +9,6 @@
   <link rel="apple-touch-icon" href="assets/aufc-crest-color.png">
   <link rel="stylesheet" href="styles.css">
   <style>
-    .ways-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-    .way-card { background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow); padding: 2.25rem 1.75rem; transition: all var(--transition); }
-    .way-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
-    .way-icon { font-size: 2rem; margin-bottom: 1rem; }
-    .way-card h3 { color: var(--navy); font-size: 1.4rem; margin-bottom: 0.5rem; }
-    .way-card p { font-size: 0.92rem; margin-bottom: 1.25rem; }
 
     .contact-section { background: var(--off-white); padding: 5rem 0; }
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
@@ -26,13 +20,13 @@
     .form-embed-wrap iframe { display: block; width: 100%; height: 920px; border: none; }
 
     @media (max-width: 900px) {
-      .ways-grid { grid-template-columns: 1fr; }
       .contact-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 480px) {
       .form-embed-wrap iframe { height: 1050px; }
     }
   </style>
+  <link rel="stylesheet" href="mobile.css">
 </head>
 <body>
 
@@ -84,30 +78,43 @@
 </div>
 
 <!-- ══ WAYS TO GET INVOLVED ═══════════════════════════════ -->
+<div class="ticker dark" aria-label="Play · Volunteer · Sponsor · Show Up · Join the Movement">
+  <div class="ticker-track" aria-hidden="true">
+    <div class="ticker-group"><span class="ticker-item">Play</span><span class="ticker-star">&#9733;</span><span class="ticker-item outline">Volunteer</span><span class="ticker-star">&#9733;</span><span class="ticker-item">Sponsor</span><span class="ticker-star">&#9733;</span><span class="ticker-item outline">Show Up</span><span class="ticker-star">&#9733;</span><span class="ticker-item">Join the Movement</span><span class="ticker-star">&#9733;</span></div>
+    <div class="ticker-group"><span class="ticker-item">Play</span><span class="ticker-star">&#9733;</span><span class="ticker-item outline">Volunteer</span><span class="ticker-star">&#9733;</span><span class="ticker-item">Sponsor</span><span class="ticker-star">&#9733;</span><span class="ticker-item outline">Show Up</span><span class="ticker-star">&#9733;</span><span class="ticker-item">Join the Movement</span><span class="ticker-star">&#9733;</span></div>
+  </div>
+</div>
+
 <section class="section" style="background:var(--white);">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header" style="text-align:left;">
       <span class="section-label">Ways to Join In</span>
       <h2>Play, Volunteer, or Sponsor</h2>
     </div>
-    <div class="ways-grid">
-      <div class="way-card">
-        <div class="way-icon">⚽</div>
-        <h3>Play</h3>
-        <p>Interested in trying out for the squad? Reach out and the coaching staff will be in touch about upcoming opportunities.</p>
-        <a href="mailto:info@alexandriaunited.fc" class="btn btn-gold-outline">Inquire About Tryouts</a>
+    <div class="line-list">
+      <div class="line-row">
+        <span class="line-num">01</span>
+        <div>
+          <h3>Play</h3>
+          <p>Interested in trying out for the squad? Reach out and the coaching staff will be in touch about upcoming opportunities.</p>
+          <a href="mailto:info@alexandriaunited.fc" class="line-link">Inquire About Tryouts</a>
+        </div>
       </div>
-      <div class="way-card">
-        <div class="way-icon">🙌</div>
-        <h3>Volunteer</h3>
-        <p>Matchday operations, community events, and behind-the-scenes support; the club runs on volunteer power.</p>
-        <a href="mailto:info@alexandriaunited.fc" class="btn btn-gold-outline">Get in Touch</a>
+      <div class="line-row">
+        <span class="line-num">02</span>
+        <div>
+          <h3>Volunteer</h3>
+          <p>Matchday operations, community events, and behind-the-scenes support; the club runs on volunteer power.</p>
+          <a href="mailto:info@alexandriaunited.fc" class="line-link">Get in Touch</a>
+        </div>
       </div>
-      <div class="way-card">
-        <div class="way-icon">🏆</div>
-        <h3>Sponsor</h3>
-        <p>Put your business in front of an engaged Alexandria and Northern Virginia community.</p>
-        <a href="sponsors.html" class="btn btn-gold-outline">Become a Sponsor</a>
+      <div class="line-row">
+        <span class="line-num">03</span>
+        <div>
+          <h3>Sponsor</h3>
+          <p>Put your business in front of an engaged Alexandria and Northern Virginia community.</p>
+          <a href="sponsors.html" class="line-link">Become a Sponsor</a>
+        </div>
       </div>
     </div>
   </div>
@@ -130,7 +137,7 @@
         <h3>Reach Us Directly</h3>
         <div class="contact-item" style="margin-bottom:1rem;">
           <span class="ci-icon" style="color:var(--gold-dark);">✉</span>
-          <span style="color:var(--gray-dark);">info@alexandriaunitedfc_</span>
+          <span style="color:var(--gray-dark);">info@alexandriaunited.fc</span>
         </div>
         <div class="contact-item" style="margin-bottom:1rem;">
           <span class="ci-icon" style="color:var(--gold-dark);">📍</span>
@@ -210,7 +217,7 @@
         <h5>Contact</h5>
         <div class="contact-item">
           <span class="ci-icon">✉</span>
-          <span>info@alexandriaunitedfc_</span>
+          <span>info@alexandriaunited.fc</span>
         </div>
         <div class="contact-item">
           <span class="ci-icon">📍</span>

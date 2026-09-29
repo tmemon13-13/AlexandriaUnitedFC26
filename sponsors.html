@@ -39,24 +39,27 @@
     /* ── Current sponsors ── */
     .current-sponsors { background: var(--white); }
     .sponsor-strip {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 2.5rem;
-      border-top: 1px solid var(--gray-light);
-      border-bottom: 1px solid var(--gray-light);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.75rem;
+      margin-top: 2rem;
     }
     .sponsor-name {
-      padding: 2rem 3rem;
-      font-size: 0.95rem;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 96px;
+      padding: 1.25rem;
+      font-size: 0.85rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       font-weight: 600;
+      text-align: center;
       color: var(--gray-mid);
-      border-left: 1px solid var(--gray-light);
-      transition: color var(--transition);
+      background: var(--off-white);
+      border: 1px solid var(--gray-light);
+      border-radius: 14px;
+      transition: all var(--transition);
     }
-    .sponsor-name:first-child { border-left: none; }
+    .sponsor-name:hover { border-color: var(--gold); }
     .sponsor-name:hover { color: var(--gold-dark); }
     .sponsor-name img { max-height: 32px; max-width: 140px; object-fit: contain; filter: grayscale(100%); opacity: 0.65; transition: all var(--transition); vertical-align: middle; }
     .sponsor-name:hover img { filter: grayscale(0%); opacity: 1; }
@@ -207,6 +210,7 @@
       .sponsor-name { padding: 1.5rem 1.5rem; }
     }
   </style>
+  <link rel="stylesheet" href="mobile.css">
 </head>
 <body>
 
@@ -528,7 +532,7 @@
         <h5>Contact</h5>
         <div class="contact-item">
           <span class="ci-icon">✉</span>
-          <span>info@alexandriaunitedfc_</span>
+          <span>info@alexandriaunited.fc</span>
         </div>
         <div class="contact-item">
           <span class="ci-icon">📍</span>
